@@ -52,7 +52,7 @@ Supported features:
 1. Quectel m66
 2. Quectel m95
 3. Quectel BG96
-4. Quectel EC2004
+4. Quectel EC200U
 
 ---
 ## SoC Compatibility

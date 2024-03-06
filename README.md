@@ -48,6 +48,13 @@ Supported features:
 ```
 
 ---
+## Supported Modems:
+1. Quectel m66
+2. Quectel m95
+3. Quectel BG96
+4. Quectel EC2004
+
+---
 ## SoC Compatibility
 
 The platform has been successfully tested on ESP32 and ESP32S3. In the upcoming days, it will be extended to  all versions of the ESP32 chips.

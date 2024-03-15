@@ -121,12 +121,6 @@ uint8_t TB_availableToRead();
  */
 bool TB_read(mqttMsg_st *ps_msg);
 
-/**
- * @brief Print the status of thingsboard library.
- * @param none
- * @returns none
- */
-void TB_printStatus();
 
 void TB_restart();
 const char *TB_getThingName();

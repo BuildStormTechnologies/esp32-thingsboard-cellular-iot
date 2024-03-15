@@ -20,6 +20,7 @@
 #include "lib_config.h"
 
 #define APP_MODULE_MAIN LIB_MODULE_MAX
+
 //-------------------------APP CONFIG--------------------------/
 #define TASK_APP_PRIORITY 4
 #define TASK_APP_STACK_SIZE (4 * 1024) // reduce it to 4096
@@ -47,4 +48,6 @@
 #define USERID ""
 #define PASSWORD ""
 
-#endif
+#define LED_PIN 2
+
+#endif //_APP_CONFIG_H_

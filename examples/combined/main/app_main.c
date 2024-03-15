@@ -20,6 +20,7 @@
 #include "lib_delay.h"
 #include "app_config.h"
 #include "lib_ble.h"
+#include "lib_gpio.h"
 #include "lib_attributes.h"
 #include "lib_telemetry.h"
 
@@ -64,6 +65,10 @@ void attributeUpdateCallBack(const char *pKeyStr, const void *pValue, valueType_
     {
     case VALUE_TYPE_INT:
         print_verbose("[%s]: %d", pKeyStr, *(int *)pValue);
+        if(strcmp(pKeyStr,"LED")==0)
+        {
+            GPIO_pinWrite(LED_PIN,*(int *)pValue);
+        }
         break;
 
     case VALUE_TYPE_FLOAT:
@@ -125,11 +130,11 @@ void app_main()
         // .pWifiSsidStr = TEST_WIFI_SSID,
         // .pWifiPwdStr = TEST_WIFI_PASSWORD,
         /* Attributes and Telemtery Configuration */
-        .maxAttributes_u8 = 4,
+        .maxAttributes_u8 = 5,
         .maxTelemetryElements_u8 = 2,
        /* Modem Configuration */
        .s_modemConfig ={
-            .model = QUECTEL_BG96,
+            .model = QUECTEL_EC200U,
             .uartPortNum_u8 = MODEM_UART_NUM,
             .rxPin_u8 = MODEM_RX_UART_PIN,
             .txPin_u8 = MODEM_TX_UART_PIN,
@@ -151,9 +156,12 @@ void app_main()
         BLE_init();
         SYSTEM_start();
 
+        GPIO_pinMode(LED_PIN, GPIO_MODE_OUTPUT, GPIO_INTR_DISABLE, NULL);
+
         ATTRIBUTE_register("testString", ATTRIBUTE_SHARED, VALUE_TYPE_STRING, attributeUpdateCallBack);
         ATTRIBUTE_register("testInt", ATTRIBUTE_SHARED, VALUE_TYPE_INT, attributeUpdateCallBack);
         ATTRIBUTE_register("testFloat", ATTRIBUTE_SHARED, VALUE_TYPE_FLOAT, attributeUpdateCallBack);
+        ATTRIBUTE_register("LED", ATTRIBUTE_SHARED, VALUE_TYPE_INT, attributeUpdateCallBack);
         ATTRIBUTE_register("clientAttr", ATTRIBUTE_CLIENT, VALUE_TYPE_INT, attributeUpdateCallBack);
 
         BaseType_t err = xTaskCreate(&app_task, "app_task", TASK_APP_STACK_SIZE, NULL, TASK_APP_PRIORITY, NULL);

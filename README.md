@@ -14,7 +14,11 @@ Supported features:
 5. Local websever OTA
 6. BLE Device Provisioning
 
-## References
+## Solution
+
+1. [ThingsBoard IoT Cellular Solution](https://buildstorm.com/solutions/simcom-aws-iot-cellular-solution/)
+
+## Blogs
 
 1. [ThingsBoard IoT Platform](https://buildstorm.com/solutions/esp32-thingsboard-iot-platform/)
 1. [Device Provisioning Setup](https://buildstorm.com/blog/thingsboard-iot-device-provisioning-setup/)
